@@ -1,6 +1,20 @@
 from tkinter import *
 
 
+
+
+def convertir():
+    h = int(x.get())/3600
+
+    h1 = int(h)
+    m1 = (h-h1)*60
+
+    m2 = int(m1)
+    s1 = int((m1-m2)*60)
+
+    t_resultados.insert(INSERT, "De los " + x.get() + " segundos, serian: "+ str(h1) + " hora con " + str(m2) + " minutos y " + str(s1) + " segundos")
+    
+
 ventana_principal = Tk()
 ventana_principal.title("Convertidor")
 ventana_principal.geometry("400x450")
@@ -8,13 +22,17 @@ ventana_principal.geometry("400x450")
 ventana_principal.config(bg="snow")
 
 
+
+
+x = StringVar()
+
 frame_entrada = Frame(ventana_principal)
 frame_entrada.config(bg = "light grey", width = 380 , height = 240)
 frame_entrada.place(x = 10, y = 10)
 
-frame_entrada1 = Frame(ventana_principal)
-frame_entrada1.config(bg = "slategray4", width = 380 , height = 180)
-frame_entrada1.place(x = 10, y = 260)
+#frame_entrada1 = Frame(ventana_principal)
+#frame_entrada1.config(bg = "slategray4", width = 380 , height = 180)
+#frame_entrada1.place(x = 10, y = 260)
 
 
 titulo = Label(frame_entrada, text = "Convertidor de tiempo")
@@ -27,14 +45,14 @@ titulo2.place(x = 50, y = 150)
 
 # Entry para segundos
 
-entry_s = Entry(ventana_principal)
+entry_s = Entry(ventana_principal, textvariable=x)
 entry_s.config(font=("Rubik",20), justify=LEFT, fg="gray21")
 entry_s.focus_set()
 entry_s.place(x=150, y=120, width=115, height=30)
 
 
 # Boton para convertir
-bt_convertir = Button(ventana_principal, text="Convertir",bg="slategray4", fg="light grey")
+bt_convertir = Button(ventana_principal, text="Convertir",bg="slategray4", fg="light grey", command= convertir)
 bt_convertir.place(x=150, y=205, width=100, height=30)
 
 #Boton borrar
@@ -45,5 +63,10 @@ bt_borrar.place(x=25, y=205, width=100, height=30)
 bt_salir = Button(ventana_principal, text="Salir",bg="slategray4", fg="light grey")
 bt_salir.place(x=275, y=205, width=100, height=30)
 
+
+#area de texto para resultados
+t_resultados = Text(ventana_principal)
+t_resultados.config(bg = "slategray4", width = 22 , height = 5, fg="white", font=("Rubik",20))
+t_resultados.place(x = 10, y = 260)
 
 ventana_principal.mainloop()
